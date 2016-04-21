@@ -9,7 +9,6 @@ def find_id(search_term):
         while True:
             querystring = apiurl_musixmatch + "track.search?q=" + urllib.parse.quote(search_term) + "&apikey=" + apikey_musixmatch + "&format=plain"
             request = urllib.request.Request(querystring)
-            #request.add_header("Authorization", "Bearer " + client_access_token)
             request.add_header("User-Agent", "curl/7.9.8 (i686-pc-linux-gnu) libcurl 7.9.8 (OpenSSL 0.9.6b) (ipv6 enabled)") #Must include user agent of some sort, otherwise 403 returned
             while True:
                 try:
@@ -33,7 +32,6 @@ def song_lyric(track_id):
         while True:
             querystring = apiurl_musixmatch + "track.lyrics.get?track_id=" + str(track_id) + "&apikey=" + apikey_musixmatch + "&format=plain&f_has_lyrics=1"
             request = urllib.request.Request(querystring)
-            #request.add_header("Authorization", "Bearer " + client_access_token)
             request.add_header("User-Agent", "curl/7.9.8 (i686-pc-linux-gnu) libcurl 7.9.8 (OpenSSL 0.9.6b) (ipv6 enabled)") #Must include user agent of some sort, otherwise 403 returned
             while True:
                 try:
@@ -48,7 +46,7 @@ def song_lyric(track_id):
             return body
 
 def main():
-    q = "negramaro estate"
+    q = "negramaro estate" #THE SEARCH QUERY
     track_id = (find_id(q))
     print (track_id)
     print (song_lyric(track_id))
